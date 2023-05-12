@@ -1,5 +1,5 @@
-import ContainerCard from "../../UI/ContainerCard";
-import ButtonsInCards from "../../UI/ButtonsInCards";
+import ContainerCard from "../UI/ContainerCard";
+import ButtonsInCards from "../UI/ButtonsInCards";
 import classes from "./AllArticles.module.css";
 
 const AllArticles = (props) => {
