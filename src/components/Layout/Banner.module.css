@@ -1,0 +1,32 @@
+.bannerContainer {
+  position: relative;
+}
+
+.bannerImage {
+  width: 100%;
+}
+
+.bannerContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.bannerContent h2 {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 44px;
+  line-height: 74px;
+  letter-spacing: 0.04em;
+}
+
+.bannerContent p {
+  opacity: 0.4;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}

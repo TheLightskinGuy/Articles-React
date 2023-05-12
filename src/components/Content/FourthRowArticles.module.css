@@ -1,0 +1,49 @@
+.smallContainer {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 100%;
+}
+
+.cardContentAllign {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.allignInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.infosName {
+  font-size: 12px;
+  color: #1f3f68;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.infosLikesComm {
+  font-size: 12px;
+  color: #1f3f68;
+  margin: 0;
+}
+
+.smallCardContent h1 {
+  font-size: 20px;
+}
+.smallCardContent > p {
+  font-size: 12px;
+}
+
+.secondRow {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

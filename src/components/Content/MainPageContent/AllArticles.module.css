@@ -1,0 +1,94 @@
+.header h3 {
+  color: #356ead;
+  opacity: 0.8;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.container {
+  margin-bottom: 33px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 540px;
+}
+
+.cardContent h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.cardContent p {
+  line-height: 26px;
+}
+
+.cardContentAllign {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.allignInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.allignInfo p {
+  margin: 0;
+}
+
+.infosName {
+  font-size: 14px;
+  color: #1f3f68;
+}
+
+.infosLikesComm {
+  font-size: 14px;
+  color: #1f3f68;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.image {
+  width: 300px;
+  height: 200px;
+}
+
+.seeMoreArticles {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.seeMoreArticles p {
+  margin: 0;
+  color: #356ead;
+  opacity: 0.8;
+}
+
+.seeMoreArticles p:hover {
+  opacity: 1;
+  color: #275992;
+  cursor: pointer;
+}
+
+.horizontalLine {
+  width: 940px;
+  height: 1px;
+  margin: 22px 0px 70px 0px;
+  background-color: #1f3f68;
+  opacity: 0.6;
+}

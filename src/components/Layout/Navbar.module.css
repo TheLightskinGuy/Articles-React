@@ -1,0 +1,13 @@
+.nav {
+  padding: 45px 90px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: grey; */
+  align-items: center;
+}
+
+.icons {
+  font-size: 24px;
+  color: #356ead;
+}

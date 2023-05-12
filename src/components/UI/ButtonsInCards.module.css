@@ -1,0 +1,21 @@
+.big {
+  display: flex;
+  column-gap: 38px;
+  font-size: 24px;
+  color: #356ead;
+}
+
+.small {
+  display: flex;
+  column-gap: 22px;
+  font-size: 18px;
+  color: #356ead;
+}
+
+.shareButton {
+  cursor: pointer;
+}
+
+.bookmarkButton {
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Stint+Ultra+Condensed&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.mainContainer {
+  width: 941px;
+  height: auto;
+}
+
+h1 {
+  font-family: "Stint Ultra Condensed";
+  color: #1f3f68;
+  font-weight: 400;
+}
