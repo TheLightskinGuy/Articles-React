@@ -1,26 +1,29 @@
 .medium_container {
-  height: 275px;
-  width: 139px;
+  width: 220px;
   margin-bottom: 33px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .image {
-  width: 139px;
-  height: 95px;
+  width: 220px;
+  height: 166px;
   object-fit: cover;
 }
 
-.medium_container h1 {
-  font-size: 22px;
-  margin-top: 16px;
+.cardContent {
+  display: flex;
+  flex-direction: column;
 }
 
-.medium_container p {
-  line-height: 16px;
-  font-size: 12px;
+.cardContent h1 {
+  font-size: 25px;
+  margin: 16px 0;
+}
+
+.cardContent p {
+  line-height: 20px;
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -33,7 +36,6 @@
 }
 
 .allignInfo {
-  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -43,16 +45,16 @@
 }
 
 .infosName {
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  color: #1f3f68;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  letter-spacing: 0.04em;
-  font-size: 10px;
-  color: #1f3f68;
 }
 
 .infosLikesComm {
-  font-size: 10px;
+  font-size: 14px;
   color: #1f3f68;
   opacity: 0.4;
 }

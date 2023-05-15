@@ -10,7 +10,20 @@ const Input = (props) => {
   };
 
   const handleClick = () => {
-    props.onButtonClick(inputValue);
+    search();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      search();
+    }
+  };
+
+  const search = () => {
+    if (inputValue.trim() !== "") {
+      props.onButtonClick(inputValue);
+      setInputValue("");
+    }
   };
 
   return (
@@ -24,6 +37,7 @@ const Input = (props) => {
         placeholder="Search Articles"
         value={inputValue}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );

@@ -1,30 +1,31 @@
+import classes from "./ThirdRowArtices.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
-import classes from "./ThirdRowArticles.module.css";
 
-const SecondRowArticles = (props) => {
+const ThirdRowArticles = ({ data }) => {
   return (
-    <div className={classes.smallContainer}>
-      <div>
-        <img className={classes.image} src={props.image} alt="Header Banner2" />
-      </div>
-      <div className={classes.smallCardContent}>
-        <h1>Dolor else situm ametus</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+    <div className={classes.medium_container}>
+      <img
+        className={classes.image}
+        src={data?.webformatURL}
+        alt="Header Banner"
+      />
+      <div className={classes.cardContent}>
+        <h1>{data?.views}</h1>
+        <p>{data?.tags}</p>
         <div className={classes.cardContentAllign}>
           <div className={classes.allignInfo}>
-            <p className={classes.infosName}>Veronica Micle</p>
-            <p className={classes.infosLikesComm}>May 5, 3 min read</p>
+            <p className={classes.infosName}>{data?.user}</p>
+            <p className={classes.infosLikesComm}>Likes: {data?.likes}</p>
+            <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
           </div>
-          <div className={classes.secondRow}>
-            <ButtonsInCards class={"small"} />
+          <div className={classes.row}>
+            <ButtonsInCards class={"medium"} />
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };
 
-export default SecondRowArticles;
+export default ThirdRowArticles;

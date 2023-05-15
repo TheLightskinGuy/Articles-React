@@ -5,10 +5,17 @@
   color: #356ead;
 }
 
+.medium {
+  display: flex;
+  column-gap: 28px;
+  font-size: 20px;
+  color: #356ead;
+}
+
 .small {
   display: flex;
-  column-gap: 22px;
-  font-size: 18px;
+  column-gap: 15px;
+  font-size: 15px;
   color: #356ead;
 }
 

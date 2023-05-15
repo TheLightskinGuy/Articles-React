@@ -1,11 +1,11 @@
 import Navbar from "./components/Layout/Navbar";
-import PopularMain from "./components/Content/PopularMain";
+import Homepage from "./components/Content/Homepage";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <PopularMain />
+      <Homepage />
     </div>
   );
 }
