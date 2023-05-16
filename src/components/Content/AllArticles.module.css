@@ -1,10 +1,3 @@
-.header h3 {
-  color: #356ead;
-  opacity: 0.8;
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 30px;
-}
 
 .container {
   margin-bottom: 33px;
@@ -66,29 +59,4 @@
 .image {
   width: 300px;
   height: 200px;
-}
-
-.seeMoreArticles {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.seeMoreArticles p {
-  margin: 0;
-  color: #356ead;
-  opacity: 0.8;
-}
-
-.seeMoreArticles p:hover {
-  opacity: 1;
-  color: #275992;
-  cursor: pointer;
-}
-
-.horizontalLine {
-  width: 940px;
-  height: 1px;
-  margin: 22px 0px 70px 0px;
-  background-color: #1f3f68;
-  opacity: 0.6;
 }

@@ -34,6 +34,7 @@
 
 .allignInfo p {
   margin: 0;
+
 }
 
 .infosName {
@@ -76,4 +77,19 @@
 .buttonText {
   font-size: 16px;
   padding: 0 19px;
+}
+
+
+
+/* MODAL CSS */
+
+.modalContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 20px;
+}
+
+.imageContainer {
+  width: 900px;
+  height: 633px;
 }

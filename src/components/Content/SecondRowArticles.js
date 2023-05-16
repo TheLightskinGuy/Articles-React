@@ -1,9 +1,13 @@
 import classes from "./SecondRowArticles.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
 
-const SecondRowArticles = ({ data }) => {
+const SecondRowArticles = ({ data, onClick }) => {
+  const handleCardClick = () => {
+    onClick(data);
+  };
+
   return (
-    <div className={classes.medium_container}>
+    <div className={classes.medium_container} onClick={onClick}>
       <img
         className={classes.image}
         src={data?.webformatURL}
