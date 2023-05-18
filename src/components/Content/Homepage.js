@@ -55,15 +55,15 @@ const PopularMain = () => {
       } catch (error) {
         setError(error.message);
       }
+      if (error) {
+        console.log(error);
+      }
 
       setIsLoading(false);
     };
 
     fetchData();
-  }, [inputValue]);
-
-  console.log(allArticlesData);
-  console.log(error);
+  }, [inputValue, error]);
 
   const handleButtonClick = (value) => {
     setInputValue(value);
@@ -73,8 +73,12 @@ const PopularMain = () => {
     setShowArticles(!showArticles);
   };
 
+  useEffect(() => {
+    console.log(selectedArticleIndex);
+  }, [selectedArticleIndex]);
+
   const handleArticleClick = (index) => {
-    setSelectedArticleIndex(popularData.hits[index]);
+    setSelectedArticleIndex(index);
     setIsModalOpen(true);
   };
 
@@ -82,21 +86,31 @@ const PopularMain = () => {
     setIsModalOpen(false);
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPageAll = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
-  const handleNextPage = () => {
+  const handleNextPageAll = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  // Retrieve the displayed articles based on the current page and articles per page
+  const handlePrevClickModal = () => {
+    setSelectedArticleIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : 19
+    );
+  };
+
+  const handleNextClickModal = () => {
+    setSelectedArticleIndex((prevIndex) =>
+      prevIndex < 19 ? prevIndex + 1 : 0
+    );
+  };
+
   const displayedArticles = allArticlesData?.hits?.slice(
     (currentPage - 1) * articlesPerPage,
     currentPage * articlesPerPage
   );
 
-  // Calculate the total number of pages based on the length of hits array and articles per page
   const totalPages = Math.ceil(
     (allArticlesData?.hits?.length || 0) / articlesPerPage
   );
@@ -108,12 +122,18 @@ const PopularMain = () => {
   return (
     <div>
       {isModalOpen && (
-        <ModalWrapper onClose={handleCloseModal}>
+        <ModalWrapper
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          handlePrevClick={handlePrevClickModal}
+          handleNextClick={handleNextClickModal}
+        >
           {selectedArticleIndex !== null && (
             <FirstPopularArticle
               containerClass={"modalContainer"}
               imageClass={"imageContainer"}
-              content={popularData.hits[selectedArticleIndex]}
+              rowClass={"rowContainer"}
+              data={popularData.hits[selectedArticleIndex]}
               index={selectedArticleIndex}
             />
           )}
@@ -135,52 +155,50 @@ const PopularMain = () => {
           <div className={classes.header}>
             <h3>POPULAR</h3>
           </div>
-
           <FirstPopularArticle
-            data={popularData}
+            data={popularData?.hits[0]}
             containerClass={"container"}
             imageClass={"image"}
+            onClick={() => handleArticleClick("0")}
           />
-
           <div className={classes.restRowArticles}>
             {popularData.hits.slice(1, 4).map((item, index) => (
               <SecondRowArticles
                 key={index}
                 data={item}
-                onClick={() => handleArticleClick(index)}
+                onClick={() => handleArticleClick(index + 1)}
               />
             ))}
           </div>
-
           {/* if there are Articles in API call, render the rows components */}
           {showArticles && (
             <>
               <div className={classes.restRowArticles}>
-                {popularData.hits.slice(5, 9).map((item, index) => (
+                {popularData.hits.slice(4, 8).map((item, index) => (
                   <ThirdRowArticles
                     key={index}
                     data={item}
-                    onClick={handleArticleClick}
+                    onClick={() => handleArticleClick(index + 4)}
                   />
                 ))}
               </div>
 
               <div className={classes.restRowArticles}>
-                {popularData.hits.slice(6, 12).map((item, index) => (
+                {popularData.hits.slice(8, 14).map((item, index) => (
                   <FourthRowArticles
                     key={index}
                     data={item}
-                    onClick={() => handleArticleClick(index)}
+                    onClick={() => handleArticleClick(index + 8)}
                   />
                 ))}
               </div>
 
               <div className={classes.restRowArticles}>
-                {popularData.hits.slice(14, 20).map((item, index) => (
+                {popularData.hits.slice(14).map((item, index) => (
                   <FourthRowArticles
                     key={index}
                     data={item}
-                    onClick={() => handleArticleClick(index)}
+                    onClick={() => handleArticleClick(index + 14)}
                   />
                 ))}
               </div>
@@ -196,17 +214,15 @@ const PopularMain = () => {
           <div className={classes.header}>
             <h3>ALL ARTICLES</h3>
           </div>
-
           {/* use the logic for pages via Api call + num of pages (5 items on page)*/}
           {displayedArticles &&
             displayedArticles.map((item, index) => (
               <AllArticles key={index} data={item} />
             ))}
-
           <div className={classes.prevButtons}>
             <button
               className={classes.button}
-              onClick={handlePrevPage}
+              onClick={handlePrevPageAll}
               disabled={isPrevButtonDisabled}
             >
               <FaArrowLeft />
@@ -214,7 +230,7 @@ const PopularMain = () => {
             </button>
             <button
               className={classes.button}
-              onClick={handleNextPage}
+              onClick={handleNextPageAll}
               disabled={isNextButtonDisabled}
             >
               <span className={classes.buttonText}>New Post</span>

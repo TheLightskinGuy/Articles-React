@@ -1,10 +1,11 @@
 import classes from "./ThirdRowArtices.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
 
-const ThirdRowArticles = ({ data }) => {
+const ThirdRowArticles = ({ data, onClick }) => {
   return (
     <div className={classes.medium_container}>
       <img
+        onClick={onClick}
         className={classes.image}
         src={data?.webformatURL}
         alt="Header Banner"

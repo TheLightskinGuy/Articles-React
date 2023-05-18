@@ -9,6 +9,7 @@
   width: 220px;
   height: 166px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .cardContent {

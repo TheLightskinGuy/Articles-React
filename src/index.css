@@ -22,3 +22,7 @@ h1 {
   color: #1f3f68;
   font-weight: 400;
 }
+
+.modal-open {
+  overflow: hidden;
+}

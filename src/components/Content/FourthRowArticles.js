@@ -1,26 +1,27 @@
 import classes from "./FourthRowArticles.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
 
-const FourthRowArticles = ({ data }) => {
+const FourthRowArticles = ({ data, onClick }) => {
   return (
     <div className={classes.medium_container}>
       <img
+        onClick={onClick}
         className={classes.image}
         src={data?.webformatURL}
         alt="Header Banner"
       />
-        <h1>{data?.views}</h1>
-        <p>{data?.tags}</p>
-        <p className={classes.infosName}>{data?.user}</p>
-        <div className={classes.cardContentAllign}>
-          <div className={classes.allignInfo}>
-            <p className={classes.infosLikesComm}>Likes: {data?.likes}</p>
-            <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
-          </div>
-          <div className={classes.row}>
-            <ButtonsInCards class={"small"} />
-          </div>
+      <h1>{data?.views}</h1>
+      <p>{data?.tags}</p>
+      <p className={classes.infosName}>{data?.user}</p>
+      <div className={classes.cardContentAllign}>
+        <div className={classes.allignInfo}>
+          <p className={classes.infosLikesComm}>Likes: {data?.likes}</p>
+          <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
         </div>
+        <div className={classes.row}>
+          <ButtonsInCards class={"small"} />
+        </div>
+      </div>
       <div></div>
     </div>
   );

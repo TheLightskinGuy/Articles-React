@@ -11,6 +11,7 @@
   width: 139px;
   height: 95px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .medium_container h1 {
