@@ -10,7 +10,7 @@ import ModalWrapper from "../UI/ModalWrapper";
 import AllArticles from "./AllArticles";
 import Input from "./Input";
 
-const PopularMain = () => {
+const Homepage = () => {
   const [inputValue, setInputValue] = useState("");
   const [showArticles, setShowArticles] = useState(false);
   const [popularData, setPopularData] = useState(null);
@@ -73,10 +73,6 @@ const PopularMain = () => {
     setShowArticles(!showArticles);
   };
 
-  useEffect(() => {
-    console.log(selectedArticleIndex);
-  }, [selectedArticleIndex]);
-
   const handleArticleClick = (index) => {
     setSelectedArticleIndex(index);
     setIsModalOpen(true);
@@ -96,13 +92,13 @@ const PopularMain = () => {
 
   const handlePrevClickModal = () => {
     setSelectedArticleIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : 19
+      prevIndex > 0 ? parseInt(prevIndex) - 1 : popularData.hits.length - 1
     );
   };
 
   const handleNextClickModal = () => {
     setSelectedArticleIndex((prevIndex) =>
-      prevIndex < 19 ? prevIndex + 1 : 0
+      prevIndex < popularData.hits.length - 1 ? parseInt(prevIndex) + 1 : 0
     );
   };
 
@@ -134,7 +130,6 @@ const PopularMain = () => {
               imageClass={"imageContainer"}
               rowClass={"rowContainer"}
               data={popularData.hits[selectedArticleIndex]}
-              index={selectedArticleIndex}
             />
           )}
         </ModalWrapper>
@@ -214,7 +209,7 @@ const PopularMain = () => {
           <div className={classes.header}>
             <h3>ALL ARTICLES</h3>
           </div>
-          {/* use the logic for pages via Api call + num of pages (5 items on page)*/}
+          {/* use the logic for pages via Api call entries / num of pages (5 items on page)*/}
           {displayedArticles &&
             displayedArticles.map((item, index) => (
               <AllArticles key={index} data={item} />
@@ -243,4 +238,4 @@ const PopularMain = () => {
   );
 };
 
-export default PopularMain;
+export default Homepage;

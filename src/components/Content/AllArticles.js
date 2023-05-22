@@ -20,7 +20,9 @@ const AllArticles = ({ data }) => {
             <div className={classes.allignInfo}>
               <p className={classes.infosName}>{data?.user}</p>
               <p className={classes.infosLikesComm}>Likes: {data?.likes}</p>
-              <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
+              <p className={classes.infosLikesComm}>
+                Comments: {data?.comments}
+              </p>
             </div>
             <div className={classes.row}>
               <ButtonsInCards class={"big"} />

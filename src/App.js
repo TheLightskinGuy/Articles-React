@@ -3,10 +3,10 @@ import Homepage from "./components/Content/Homepage";
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
       <Homepage />
-    </div>
+    </>
   );
 }
 
