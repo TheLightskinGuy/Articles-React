@@ -42,6 +42,7 @@ const Homepage = () => {
 
         const popularData = await popularResponse.json();
         const allArticlesData = await allArticlesResponse.json();
+        console.log(popularData);
 
         setPopularData(popularData);
         setAllArticlesData(allArticlesData);

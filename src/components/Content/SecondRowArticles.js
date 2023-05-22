@@ -20,7 +20,7 @@ const SecondRowArticles = ({ data, onClick }) => {
             <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
           </div>
           <div className={classes.row}>
-            <ButtonsInCards class={"big"} />
+            <ButtonsInCards class={"big"} id={data} />
           </div>
         </div>
       </div>
