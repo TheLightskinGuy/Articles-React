@@ -40,7 +40,7 @@ User can see all articles in a paginated view.
 Pagination buttons allow the user to navigate between pages.
 Loading spinner is displayed while fetching article data.
 Error message is shown if no data is found.
-Responsive design for optimal viewing on different devices.
+
 Getting Started
 To get started with the project, follow these steps:
 
