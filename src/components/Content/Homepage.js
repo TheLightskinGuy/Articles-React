@@ -166,7 +166,6 @@ const Homepage = () => {
               />
             ))}
           </div>
-          {/* if there are Articles in API call, render the rows components */}
           {showArticles && (
             <>
               <div className={classes.restRowArticles}>
@@ -210,7 +209,6 @@ const Homepage = () => {
           <div className={classes.header}>
             <h3>ALL ARTICLES</h3>
           </div>
-          {/* use the logic for pages via Api call entries / num of pages (5 items on page)*/}
           {displayedArticles &&
             displayedArticles.map((item, index) => (
               <AllArticles key={index} data={item} />
