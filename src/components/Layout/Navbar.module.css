@@ -10,4 +10,9 @@
 .icons {
   font-size: 24px;
   color: #356ead;
+  cursor: pointer;
+}
+
+.ArticleComponent {
+  padding-top: 32px;
 }

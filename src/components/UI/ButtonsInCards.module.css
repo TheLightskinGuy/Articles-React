@@ -26,3 +26,7 @@
 .bookmarkButton {
   cursor: pointer;
 }
+
+.bookmarkButtonActive {
+  color: yellow !important;
+}

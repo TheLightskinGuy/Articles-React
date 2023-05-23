@@ -1,7 +1,7 @@
 import classes from "./SecondRowArticles.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
 
-const SecondRowArticles = ({ data, onClick }) => {
+const SecondRowArticles = ({ data, onClick, onBookmarkClick }) => {
   return (
     <div className={classes.medium_container}>
       <img
@@ -20,7 +20,7 @@ const SecondRowArticles = ({ data, onClick }) => {
             <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
           </div>
           <div className={classes.row}>
-            <ButtonsInCards class={"big"} id={data} />
+            <ButtonsInCards class={"big"} data={data} onBookmarkClick={onBookmarkClick}/>
           </div>
         </div>
       </div>

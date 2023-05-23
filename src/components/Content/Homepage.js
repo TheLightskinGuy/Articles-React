@@ -20,7 +20,15 @@ const Homepage = () => {
   const [showNoDataMessage, setShowNoDataMessage] = useState(false);
   const [selectedArticleIndex, setSelectedArticleIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showButtons, setShowButtons] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [showArrows, setShowArrows] = useState(true);
   const [currentPage, setCurrentPage] = useState(2);
+  const [bookmarkedData, setBookmarkedData] = useState(
+    JSON.parse(localStorage.getItem("bookmarkedData")) || []
+  );
+
+
   const articlesPerPage = 5;
 
   useEffect(() => {
@@ -42,10 +50,11 @@ const Homepage = () => {
 
         const popularData = await popularResponse.json();
         const allArticlesData = await allArticlesResponse.json();
-        console.log(popularData);
+        // console.log(popularData);
 
         setPopularData(popularData);
         setAllArticlesData(allArticlesData);
+        setShowButtons(true);
 
         if (popularData.total === 0) {
           setShowNoDataMessage(true);
@@ -66,7 +75,19 @@ const Homepage = () => {
     fetchData();
   }, [inputValue, error]);
 
-  const handleButtonClick = (value) => {
+  const handleBookmarkClick = (data) => {
+    if (!bookmarkedData.some((item) => item.id === data.id)) {
+      const updatedData = [...bookmarkedData, data];
+      setBookmarkedData(updatedData);
+      localStorage.setItem("bookmarkedData", JSON.stringify(updatedData));
+    } else {
+      const updatedData = bookmarkedData.filter((item) => item.id !== data.id);
+      setBookmarkedData(updatedData);
+      localStorage.setItem("bookmarkedData", JSON.stringify(updatedData));
+    }
+  };
+
+  const handleButtonClickInput = (value) => {
     setInputValue(value);
   };
 
@@ -122,6 +143,7 @@ const Homepage = () => {
         <ModalWrapper
           isOpen={isModalOpen}
           onClose={handleCloseModal}
+          showArrow={showArrows}
           handlePrevClick={handlePrevClickModal}
           handleNextClick={handleNextClickModal}
         >
@@ -136,7 +158,7 @@ const Homepage = () => {
         </ModalWrapper>
       )}
 
-      <Input onButtonClick={handleButtonClick} />
+      <Input onButtonClick={handleButtonClickInput} />
 
       {isLoading && <div className={classes.spinner}></div>}
 
@@ -156,6 +178,7 @@ const Homepage = () => {
             containerClass={"container"}
             imageClass={"image"}
             onClick={() => handleArticleClick("0")}
+            onBookmarkClick={handleBookmarkClick}
           />
           <div className={classes.restRowArticles}>
             {popularData.hits.slice(1, 4).map((item, index) => (
@@ -163,6 +186,7 @@ const Homepage = () => {
                 key={index}
                 data={item}
                 onClick={() => handleArticleClick(index + 1)}
+                onBookmarkClick={handleBookmarkClick}
               />
             ))}
           </div>
@@ -174,6 +198,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 4)}
+                    onBookmarkClick={handleBookmarkClick}
                   />
                 ))}
               </div>
@@ -184,6 +209,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 8)}
+                    onBookmarkClick={handleBookmarkClick}
                   />
                 ))}
               </div>
@@ -194,6 +220,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 14)}
+                    onBookmarkClick={handleBookmarkClick}
                   />
                 ))}
               </div>
@@ -211,7 +238,12 @@ const Homepage = () => {
           </div>
           {displayedArticles &&
             displayedArticles.map((item, index) => (
-              <AllArticles key={index} data={item} />
+              <AllArticles
+                key={index}
+                data={item}
+                onBookmarkClick={handleBookmarkClick}
+                showButtons={showButtons}
+              />
             ))}
           <div className={classes.prevButtons}>
             <button

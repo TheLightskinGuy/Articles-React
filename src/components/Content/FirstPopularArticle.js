@@ -7,6 +7,7 @@ const PopularArticle = ({
   imageClass,
   rowClass,
   onClick,
+  onBookmarkClick,
 }) => {
   return (
     <div className={classes[containerClass]}>
@@ -20,7 +21,11 @@ const PopularArticle = ({
             <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
           </div>
           <div className={classes[rowClass]}>
-            <ButtonsInCards class={"big"} />
+            <ButtonsInCards
+              class={"big"}
+              data={data}
+              onBookmarkClick={onBookmarkClick}
+            />
           </div>
         </div>
       </div>

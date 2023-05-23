@@ -1,7 +1,7 @@
 import classes from "./FourthRowArticles.module.css";
 import ButtonsInCards from "../UI/ButtonsInCards";
 
-const FourthRowArticles = ({ data, onClick }) => {
+const FourthRowArticles = ({ data, onClick, onBookmarkClick }) => {
   return (
     <div className={classes.medium_container}>
       <img
@@ -19,7 +19,7 @@ const FourthRowArticles = ({ data, onClick }) => {
           <p className={classes.infosLikesComm}>Comments: {data?.comments}</p>
         </div>
         <div className={classes.row}>
-          <ButtonsInCards class={"small"} />
+          <ButtonsInCards class={"small"} data={data} onBookmarkClick={onBookmarkClick}/>
         </div>
       </div>
       <div></div>

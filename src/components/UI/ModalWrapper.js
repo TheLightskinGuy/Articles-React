@@ -8,6 +8,7 @@ const ModalWrapper = ({
   children,
   handlePrevClick,
   handleNextClick,
+  showArrow,
 }) => {
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -38,12 +39,14 @@ const ModalWrapper = ({
     <>
       <div className={classes.backdrop} onClick={onClose} />
       <div className={classes.arrowsWrapper}>
-        <div className={classes.leftArrow}>
-          <IoIosArrowBack
-            className={classes.arrowIcon}
-            onClick={handlePrevClick}
-          />
-        </div>
+        {showArrow && (
+          <div className={classes.leftArrow}>
+            <IoIosArrowBack
+              className={classes.arrowIcon}
+              onClick={handlePrevClick}
+            />
+          </div>
+        )}
         <div className={classes.modalContainer}>
           <div className={classes.modal}>
             <button className={classes.closeButton} onClick={onClose}>
@@ -52,12 +55,14 @@ const ModalWrapper = ({
             <div className={classes.modalContent}>{children}</div>
           </div>
         </div>
-        <div className={classes.rightArrow}>
-          <IoIosArrowForward
-            className={classes.arrowIcon}
-            onClick={handleNextClick}
-          />
-        </div>
+        {showArrow && (
+          <div className={classes.rightArrow}>
+            <IoIosArrowForward
+              className={classes.arrowIcon}
+              onClick={handleNextClick}
+            />
+          </div>
+        )}
       </div>
     </>
   );

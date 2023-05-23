@@ -2,7 +2,7 @@ import ContainerCard from "../UI/ContainerCard";
 import ButtonsInCards from "../UI/ButtonsInCards";
 import classes from "./AllArticles.module.css";
 
-const AllArticles = ({ data }) => {
+const AllArticles = ({ data, onBookmarkClick, showButtons }) => {
   return (
     <ContainerCard>
       <div className={classes.container}>
@@ -25,7 +25,13 @@ const AllArticles = ({ data }) => {
               </p>
             </div>
             <div className={classes.row}>
-              <ButtonsInCards class={"big"} />
+              {showButtons && (
+                <ButtonsInCards
+                  class={"big"}
+                  data={data}
+                  onBookmarkClick={onBookmarkClick}
+                />
+              )}
             </div>
           </div>
         </div>
