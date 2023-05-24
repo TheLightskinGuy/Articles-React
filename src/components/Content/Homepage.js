@@ -10,7 +10,7 @@ import ModalWrapper from "../UI/ModalWrapper";
 import AllArticles from "./AllArticles";
 import Input from "./Input";
 
-const Homepage = () => {
+const Homepage = ({ bookmarkedData, onBookmarkClick }) => {
   const [inputValue, setInputValue] = useState("");
   const [showArticles, setShowArticles] = useState(false);
   const [popularData, setPopularData] = useState(null);
@@ -20,14 +20,9 @@ const Homepage = () => {
   const [showNoDataMessage, setShowNoDataMessage] = useState(false);
   const [selectedArticleIndex, setSelectedArticleIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showButtons, setShowButtons] = useState(true);
   // eslint-disable-next-line no-unused-vars
   const [showArrows, setShowArrows] = useState(true);
   const [currentPage, setCurrentPage] = useState(2);
-  const [bookmarkedData, setBookmarkedData] = useState(
-    JSON.parse(localStorage.getItem("bookmarkedData")) || []
-  );
-
 
   const articlesPerPage = 5;
 
@@ -54,7 +49,6 @@ const Homepage = () => {
 
         setPopularData(popularData);
         setAllArticlesData(allArticlesData);
-        setShowButtons(true);
 
         if (popularData.total === 0) {
           setShowNoDataMessage(true);
@@ -75,16 +69,8 @@ const Homepage = () => {
     fetchData();
   }, [inputValue, error]);
 
-  const handleBookmarkClick = (data) => {
-    if (!bookmarkedData.some((item) => item.id === data.id)) {
-      const updatedData = [...bookmarkedData, data];
-      setBookmarkedData(updatedData);
-      localStorage.setItem("bookmarkedData", JSON.stringify(updatedData));
-    } else {
-      const updatedData = bookmarkedData.filter((item) => item.id !== data.id);
-      setBookmarkedData(updatedData);
-      localStorage.setItem("bookmarkedData", JSON.stringify(updatedData));
-    }
+  const handleLocalBookmarkClick = (data) => {
+    onBookmarkClick(data);
   };
 
   const handleButtonClickInput = (value) => {
@@ -111,7 +97,6 @@ const Homepage = () => {
   const handleNextPageAll = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
-
   const handlePrevClickModal = () => {
     setSelectedArticleIndex((prevIndex) =>
       prevIndex > 0 ? parseInt(prevIndex) - 1 : popularData.hits.length - 1
@@ -178,7 +163,7 @@ const Homepage = () => {
             containerClass={"container"}
             imageClass={"image"}
             onClick={() => handleArticleClick("0")}
-            onBookmarkClick={handleBookmarkClick}
+            onBookmarkClick={handleLocalBookmarkClick}
           />
           <div className={classes.restRowArticles}>
             {popularData.hits.slice(1, 4).map((item, index) => (
@@ -186,7 +171,7 @@ const Homepage = () => {
                 key={index}
                 data={item}
                 onClick={() => handleArticleClick(index + 1)}
-                onBookmarkClick={handleBookmarkClick}
+                onBookmarkClick={handleLocalBookmarkClick}
               />
             ))}
           </div>
@@ -198,7 +183,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 4)}
-                    onBookmarkClick={handleBookmarkClick}
+                    onBookmarkClick={handleLocalBookmarkClick}
                   />
                 ))}
               </div>
@@ -209,7 +194,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 8)}
-                    onBookmarkClick={handleBookmarkClick}
+                    onBookmarkClick={handleLocalBookmarkClick}
                   />
                 ))}
               </div>
@@ -220,7 +205,7 @@ const Homepage = () => {
                     key={index}
                     data={item}
                     onClick={() => handleArticleClick(index + 14)}
-                    onBookmarkClick={handleBookmarkClick}
+                    onBookmarkClick={handleLocalBookmarkClick}
                   />
                 ))}
               </div>
@@ -241,8 +226,7 @@ const Homepage = () => {
               <AllArticles
                 key={index}
                 data={item}
-                onBookmarkClick={handleBookmarkClick}
-                showButtons={showButtons}
+                onBookmarkClick={handleLocalBookmarkClick}
               />
             ))}
           <div className={classes.prevButtons}>

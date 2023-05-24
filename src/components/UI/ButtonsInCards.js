@@ -14,12 +14,28 @@ const ButtonsInCards = (props) => {
         (item) => item.id === props.data.id
       );
       setIsBookmarked(isItemBookmarked);
+    } else {
+      setIsBookmarked(false);
     }
   }, [props.data.id]);
 
   const handleBookmarkClick = () => {
     props.onBookmarkClick(props.data);
+    setIsBookmarked(!isBookmarked);
   };
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("bookmarkedData");
+    if (savedData) {
+      const bookmarkedData = JSON.parse(savedData);
+      const isItemBookmarked = bookmarkedData.some(
+        (item) => item.id === props.data.id
+      );
+      if (!isItemBookmarked) {
+        setIsBookmarked(false);
+      }
+    }
+  }, [props.data.id]);
 
   return (
     <div className={classes[`${props.class}`]}>

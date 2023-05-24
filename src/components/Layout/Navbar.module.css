@@ -16,3 +16,9 @@
 .ArticleComponent {
   padding-top: 32px;
 }
+
+.noFavoritesData {
+  display: flex;
+  justify-content: center;
+  color: #356ead;
+}

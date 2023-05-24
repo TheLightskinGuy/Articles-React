@@ -6,11 +6,10 @@ import Banner from "./Banner";
 import ModalWrapper from "../UI/ModalWrapper";
 import AllArticles from "../Content/AllArticles";
 
-const Navbar = () => {
+const Navbar = ({ bookmarkedData, onBookmarkClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState([]);
-  const [showButtons, setShowButtons] = useState(false);
-  const [showArrows, setShowArrows] = useState(false);
 
   useEffect(() => {
     const savedData = localStorage.getItem("bookmarkedData");
@@ -25,8 +24,10 @@ const Navbar = () => {
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
-    setShowButtons(false);
-    setShowArrows(false);
+  };
+
+  const handleLocalBookmarkClick = (item) => {
+    onBookmarkClick(item);
   };
 
   return (
@@ -35,12 +36,22 @@ const Navbar = () => {
         <ModalWrapper
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          showArrow={showArrows}
+          showArrow={false}
         >
           <div className={classes.ArticleComponent}>
-            {data.map((item, index) => (
-              <AllArticles data={item} key={index} showButtons={showButtons} />
-            ))}
+            {bookmarkedData.length > 0 ? (
+              bookmarkedData.map((item, index) => (
+                <AllArticles
+                  key={index}
+                  data={item}
+                  onBookmarkClick={handleLocalBookmarkClick}
+                />
+              ))
+            ) : (
+              <p className={classes.noFavoritesData}>
+                THERE ARE NO SAVED ARTICLES, TRY TO ADD SOME FROM HOMEPAGE
+              </p>
+            )}
           </div>
         </ModalWrapper>
       )}
